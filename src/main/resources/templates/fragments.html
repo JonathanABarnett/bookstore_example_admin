@@ -12,9 +12,10 @@
 </head>
 
 <body>
+
 <header th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-info">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info fixed">
+        <a class="navbar-brand" href="#"><img id="brand-image" th:src="@{/img/jb-logo1.png}"/></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,7 +32,7 @@
                         Books
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Add a new book</a>
+                        <a class="dropdown-item" th:href="@{/book/add}">Add a new book</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">View book list</a>
                     </div>
@@ -45,6 +46,12 @@
     </nav>
 
 </header>
+
+<!-- FOOTER -->
+<footer class="container footer" th:fragment="footer">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy;2018 Alaythia Productions &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
 
 <div th:fragment="scripts">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
