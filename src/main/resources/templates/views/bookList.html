@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments::head"></head>
+
+<body>
+
+<header th:replace="fragments::navbar"></header>
+
+<main role="main">
+    <div class="container">
+        <table class="table table-bordered" id="bookListTable">
+            <thead>
+            <tr>
+                <th hidden="hidden"></th>
+                <th scope="col">Cover</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Category</th>
+                <th scope="col">List Price</th>
+                <th scope="col">Our Price</th>
+                <th scope="col">Active?</th>
+                <th scope="col">Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${books}">
+                    <td hidden="hidden"><input name="id" th:value="${book.id}" /></td>
+                    <td><img id="listImage" th:src="@{'/img/book/' + ${book.id} + '.png'}" /></td>
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.category}"></td>
+                    <td th:text="'$' + ${book.listPrice}"></td>
+                    <td th:text="'$' + ${book.ourPrice}"></td>
+                    <td th:text="${book.active}"></td>
+                    <td><button class="btn btn-danger" type="submit">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer th:replace="fragments::footer"></footer>
+
+</main>
+
+
+<div th:replace="fragments::scripts"></div>
+
+</body>
+</html>

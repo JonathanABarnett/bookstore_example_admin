@@ -7,8 +7,8 @@
 <header th:replace="fragments::navbar"></header>
 
 <main role="main">
-    <div class="container">
 
+    <div class="container">
 
         <span><legend class="center-block">New Book Information</legend>
         <small class="form-text text-muted">* is required</small></span>
@@ -16,7 +16,7 @@
         <hr/>
 
         <!-- Form -->
-        <form th:action="@{/views/book/add}" method="post" enctype="multipart/form-data">
+        <form th:action="@{/book/add}" method="post" enctype="multipart/form-data" th:object="${book}">
 
             <!-- Title -->
             <div class="form-group">
@@ -105,7 +105,7 @@
                 <div class="form-row">
                     <label for="pageNumber" class="col-md-2">* Number of Pages</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="pageNumber" placeholder="Enter Year"
+                        <input type="number" class="form-control" id="pageNumber" placeholder="Enter Year"
                                th:value="${book.numberOfPages}" name="numberOfPages" required="required"/>
                         <small class="form-text text-muted">Enter Number of Pages</small>
                     </div>
@@ -117,7 +117,7 @@
                 <div class="form-row">
                     <label for="format" class="col-md-2">* Category</label>
                     <div class="col-md-8">
-                        <select id="format" class="form-control" th:value="${book.format}">
+                        <select id="format" class="form-control" th:value="${book.format}" name="format">
                             <option value="Paperback" th:selected="(${book.category} == 'Paperback')">Paperback</option>
                             <option value="Hard Cover" th:selected="(${book.category} == 'Hard Cover')">Hard Cover
                             </option>
@@ -130,7 +130,7 @@
             <!-- ISBN -->
             <div class="form-group">
                 <div class="form-row">
-                    <label for="publisher" class="col-md-2">* Publisher</label>
+                    <label for="isbn" class="col-md-2">* ISBN</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" id="isbn" placeholder="Enter ISBN"
                                th:value="${book.isbn}"
@@ -146,7 +146,7 @@
                     <label for="shippingWeight" class="col-md-2">Shipping Weight</label>
                     <div class="col-md-8">
                         <div class="input-group">
-                            <input th:value="${book.shippingWeight}" type="number" class="form-control"
+                            <input th:value="${book.shippingWeight}" type="number" step="any" class="form-control"
                                    id="shippingWeight" placeholder="Shipping Weight" name="shippingWeight"/>
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Ounces</div>
@@ -166,7 +166,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">$</div>
                             </div>
-                            <input th:value="${book.listPrice}" type="number" class="form-control" id="listprice"
+                            <input th:value="${book.listPrice}" type="number" step="any" class="form-control" id="listprice"
                                    placeholder="List Price" name="listPrice"/>
                         </div>
                         <small class="form-text text-muted">Enter List Price</small>
@@ -183,7 +183,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">$</div>
                             </div>
-                            <input th:value="${book.ourPrice}" type="number" class="form-control" id="ourprice"
+                            <input th:value="${book.ourPrice}" type="number" step="any" class="form-control" id="ourprice"
                                    placeholder="Our Price" name="ourPrice"/>
                         </div>
                         <small class="form-text text-muted">Enter Our Price</small>
@@ -253,10 +253,9 @@
 
     </div>
 
+    <footer th:replace="fragments::footer"></footer>
+
 </main>
-
-<footer th:replace="fragments::footer"></footer>
-
 
 <div th:replace="fragments::scripts"></div>
 
