@@ -26,22 +26,10 @@ public class PasswordResetToken {
     public PasswordResetToken() {}
 
     public PasswordResetToken(final String token, final User user) {
-        super();
+
 
         this.token = token;
         this.user = user;
-        this.expirationDate = calculateExpirationDate(EXPIRATION);
-    }
-
-    private Date calculateExpirationDate(final int expirationTimeInMinutes) {
-        final Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(new Date().getTime());
-        calendar.add(Calendar.MINUTE, expirationTimeInMinutes);
-        return new Date(calendar.getTime().getTime());
-    }
-
-    public void updateToken(final String token) {
-        this.token = token;
         this.expirationDate = calculateExpirationDate(EXPIRATION);
     }
 
@@ -79,6 +67,18 @@ public class PasswordResetToken {
 
     public static int getEXPIRATION() {
         return EXPIRATION;
+    }
+
+    private Date calculateExpirationDate(final int expirationTimeInMinutes) {
+        final Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(new Date().getTime());
+        calendar.add(Calendar.MINUTE, expirationTimeInMinutes);
+        return new Date(calendar.getTime().getTime());
+    }
+
+    public void updateToken(final String token) {
+        this.token = token;
+        this.expirationDate = calculateExpirationDate(EXPIRATION);
     }
 
     @Override
