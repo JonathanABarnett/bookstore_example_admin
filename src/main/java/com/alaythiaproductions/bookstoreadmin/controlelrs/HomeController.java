@@ -16,4 +16,9 @@ public class HomeController {
     public String login() {
         return "views/login";
     }
+
+    @RequestMapping(value = "/logout")
+    public String logout() {
+        return "views/logout";
+    }
 }

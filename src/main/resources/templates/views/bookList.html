@@ -25,13 +25,13 @@
             <tbody>
                 <tr th:each="book : ${books}">
                     <td hidden="hidden"><input name="id" th:value="${book.id}" /></td>
-                    <td><img id="listImage" th:src="@{'/img/book/' + ${book.id} + '.png'}" /></td>
+                    <td><img class="img-fluid" id="listImage" th:src="@{'/img/book/' + ${book.id} + '.png'}" /></td>
                     <td th:text="${book.title}"></td>
                     <td th:text="${book.author}"></td>
                     <td th:text="${book.category}"></td>
-                    <td th:text="'$' + ${book.listPrice}"></td>
-                    <td th:text="'$' + ${book.ourPrice}"></td>
-                    <td th:text="${book.active}"></td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(book.listPrice, 0, 'COMMA', 2, 'POINT')}"></td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(book.ourPrice, 0, 'COMMA', 2, 'POINT')}"></td>
+                    <td th:text="${book.active}? 'Yes' : 'No'"></td>
                     <td><button class="btn btn-danger" type="submit">Delete</button></td>
                 </tr>
             </tbody>

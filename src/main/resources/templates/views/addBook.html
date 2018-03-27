@@ -118,10 +118,10 @@
                     <label for="format" class="col-md-2">* Category</label>
                     <div class="col-md-8">
                         <select id="format" class="form-control" th:value="${book.format}" name="format">
-                            <option value="Paperback" th:selected="(${book.category} == 'Paperback')">Paperback</option>
-                            <option value="Hard Cover" th:selected="(${book.category} == 'Hard Cover')">Hard Cover
+                            <option value="Paperback" th:selected="(${book.format} == 'Paperback')">Paperback</option>
+                            <option value="Hard Cover" th:selected="(${book.format} == 'Hard Cover')">Hard Cover
                             </option>
-                            <option value="Ebook" th:selected="(${book.category} == 'Ebook')">Ebook</option>
+                            <option value="Ebook" th:selected="(${book.format} == 'Ebook')">Ebook</option>
                         </select>
                     </div>
                 </div>
@@ -194,13 +194,11 @@
             <!-- Number in Stock -->
             <div class="form-group">
                 <div class="form-row">
-                    <label for="numberInStock" class="col-md-2">Number In Stock</label>
+                    <label for="numberInStock" class="col-md-2">* Number In Stock</label>
                     <div class="col-md-8">
-                        <div class="input-group">
-                            <input th:value="${book.inStockNumber}" type="number" class="form-control"
-                                   id="numberInStock" placeholder="Our Price" name="numberInStock"/>
-                        </div>
-                        <small class="form-text text-muted">Enter Number in Stock</small>
+                            <input type="number" th:value="${book.inStockNumber}" class="form-control"
+                                   id="numberInStock" placeholder="Number in Stock" name="numberInStock" required="required"/>
+                            <small class="form-text text-muted">Enter Number in Stock</small>
                     </div>
                 </div>
             </div>

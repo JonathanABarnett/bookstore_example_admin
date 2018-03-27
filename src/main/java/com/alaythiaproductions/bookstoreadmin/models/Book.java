@@ -19,6 +19,7 @@ public class Book {
     private int numberOfPages;
     private String format;
     private String isbn;
+    private int inStockNumber;
     private double shippingWeight;
     private double listPrice;
     private double ourPrice;
@@ -26,7 +27,6 @@ public class Book {
 
     @Column(columnDefinition = "text")
     private String description;
-    private int inStockNumber;
 
     @Transient
     private MultipartFile bookImage;
