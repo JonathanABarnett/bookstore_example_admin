@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments::head"></head>
+
+<body>
+
+<header th:replace="fragments::navbar"></header>
+
+<main role="main">
+
+    <div class="container">
+        <div>
+            <ol class="breadcrumb">
+                <li><a th:href="@{/book/list}"><i class="fas fa-long-arrow-alt-left"></i>Go Back</a></li>
+                <li> | </li>
+                <li><a th:href="@{/book/updateBook?id=} + ${book.id}">Edit</a></li>
+            </ol>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <img th:src="@{/img/book/} + ${book.id} + '.png'" class="img-fluid"/>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h3 th:text="${book.title}"></h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p><strong>Author: </strong><span th:text="${book.author}"></span></p>
+                        <p><strong>Publisher: </strong><span th:text="${book.publisher}"></span></p>
+                        <p><strong>Publication Date: </strong><span th:text="${book.publicationDate}"></span></p>
+                        <p><strong>Language: </strong><span th:text="${book.language}"></span></p>
+                        <p><strong>Category: </strong><span th:text="${book.category}"></span></p>
+                        <p><strong>Pages: </strong><span th:text="${book.numberOfPages}"></span></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><strong>Format: </strong><span th:text="${book.format}"></span></p>
+                        <p><strong>ISBN: </strong><span th:text="${book.isbn}"></span></p>
+                        <p><strong>Shipping Weight: </strong><span th:text="${book.shippingWeight}"></span></p>
+                        <p><strong>List Price: </strong><span th:text="${book.listPrice}"></span></p>
+                        <p><strong>Our Price: </strong><span th:text="${book.ourPrice}"></span></p>
+                        <p><strong>Number in Stock: </strong><span th:text="${book.numberOfStock}"></span></p>
+                    </div>
+                </div>
+
+                <p><strong>Description: </strong><span th:text="${book.description}"></span></p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer th:replace="fragments::footer"></footer>
+</main>
+
+
+<span th:replace="fragments::scripts"></span>
+
+</body>
+</html>

@@ -25,8 +25,8 @@
             <tbody>
                 <tr th:each="book : ${books}">
                     <td hidden="hidden"><input name="id" th:value="${book.id}" /></td>
-                    <td><img class="img-fluid" id="listImage" th:src="@{'/img/book/' + ${book.id} + '.png'}" /></td>
-                    <td th:text="${book.title}"></td>
+                    <td><a th:href="@{bookInfo(id=${book.id})}"><img class="img-fluid" id="listImage" th:src="@{'/img/book/' + ${book.id} + '.png'}" /></a></td>
+                    <td><a th:href="@{bookInfo(id=${book.id})}"><span th:text="${book.title}"></span></a></td>
                     <td th:text="${book.author}"></td>
                     <td th:text="${book.category}"></td>
                     <td th:text="'$' + ${#numbers.formatDecimal(book.listPrice, 0, 'COMMA', 2, 'POINT')}"></td>

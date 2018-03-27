@@ -147,7 +147,7 @@
                     <div class="col-md-8">
                         <div class="input-group">
                             <input th:value="${book.shippingWeight}" type="number" step="any" class="form-control"
-                                   id="shippingWeight" placeholder="Shipping Weight" name="shippingWeight"/>
+                                   id="shippingWeight" name="shippingWeight"/>
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Ounces</div>
                             </div>
@@ -167,7 +167,7 @@
                                 <div class="input-group-text">$</div>
                             </div>
                             <input th:value="${book.listPrice}" type="number" step="any" class="form-control" id="listprice"
-                                   placeholder="List Price" name="listPrice"/>
+                                   name="listPrice"/>
                         </div>
                         <small class="form-text text-muted">Enter List Price</small>
                     </div>
@@ -184,7 +184,7 @@
                                 <div class="input-group-text">$</div>
                             </div>
                             <input th:value="${book.ourPrice}" type="number" step="any" class="form-control" id="ourprice"
-                                   placeholder="Our Price" name="ourPrice"/>
+                                   name="ourPrice"/>
                         </div>
                         <small class="form-text text-muted">Enter Our Price</small>
                     </div>
@@ -194,10 +194,10 @@
             <!-- Number in Stock -->
             <div class="form-group">
                 <div class="form-row">
-                    <label for="numberInStock" class="col-md-2">* Number In Stock</label>
+                    <label for="numberOfStock" class="col-md-2">* Number In Stock</label>
                     <div class="col-md-8">
-                            <input type="number" th:value="${book.inStockNumber}" class="form-control"
-                                   id="numberInStock" placeholder="Number in Stock" name="numberInStock" required="required"/>
+                            <input type="number" th:value="${book.numberOfStock}" class="form-control"
+                                   id="numberOfStock" name="numberOfStock" required="required"/>
                             <small class="form-text text-muted">Enter Number in Stock</small>
                     </div>
                 </div>

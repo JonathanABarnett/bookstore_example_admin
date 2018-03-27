@@ -5,10 +5,7 @@ import com.alaythiaproductions.bookstoreadmin.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +34,8 @@ public class BookController {
     @PostMapping(value = "/add")
     public String processBook(Model model, @ModelAttribute("book") Book book, HttpServletRequest request)  {
 
+        model.addAttribute("title", "Add A Book");
+
         bookService.save(book);
         MultipartFile bookImage = book.getBookImage();
 
@@ -51,6 +50,14 @@ public class BookController {
         }
 
         return "redirect:/book/list";
+    }
+
+    @RequestMapping(value = "/bookInfo")
+    public String bookInfo(@RequestParam("id") long id, Model model) {
+        Book book = bookService.findOne(id);
+        model.addAttribute("book", book);
+
+        return "views/bookInfo";
     }
 
     @GetMapping(value = "/list")
