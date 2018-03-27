@@ -11,16 +11,16 @@
     <div class="container">
         <div>
             <ol class="breadcrumb">
-                <li><a th:href="@{/book/list}"><i class="fas fa-long-arrow-alt-left"></i>Go Back</a></li>
-                <li> | </li>
-                <li><a th:href="@{/book/updateBook?id=} + ${book.id}">Edit</a></li>
+                <li><a th:href="@{/book/list}">Go Back</a></li>
+                <li><strong><p>| </p></strong></li>
+                <li><a th:href="@{/book/update?id=} + ${book.id}">Edit</a></li>
             </ol>
         </div>
 
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
-                    <img th:src="@{/img/book/} + ${book.id} + '.png'" class="img-fluid"/>
+                    <img th:src="@{/img/book/} + ${book.id} + '.png'" class="img-fluid img-thumbnail"/>
                 </div>
             </div>
             <div class="col-md-9">

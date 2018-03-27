@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.plaf.multi.MultiInternalFrameUI;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -56,8 +59,43 @@ public class BookController {
     public String bookInfo(@RequestParam("id") long id, Model model) {
         Book book = bookService.findOne(id);
         model.addAttribute("book", book);
+        model.addAttribute("title", "Book Info: " + book.getTitle());
 
         return "views/bookInfo";
+    }
+
+    @GetMapping(value = "/update")
+    public String updateBook(@RequestParam("id") long id, Model model) {
+        Book book = bookService.findOne(id);
+        model.addAttribute("book", book);
+
+        model.addAttribute("title", "Update Book: " + book.getTitle());
+
+        return "views/updateBook";
+    }
+
+    @PostMapping(value = "/update")
+    public String processUpdateBook(@ModelAttribute("book") Book book, Model model, HttpServletRequest request) {
+        bookService.save(book);
+
+        MultipartFile bookImage = book.getBookImage();
+
+        if(!bookImage.isEmpty()) {
+            try {
+                byte[] bytes = bookImage.getBytes();
+                String name = book.getId() + ".png";
+
+                Files.delete(Paths.get("src/main/resources/static/img/book/" + name));
+
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/img/book/" + name)));
+                stream.write(bytes);
+                stream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "redirect:/book/bookInfo?id=" + book.getId();
     }
 
     @GetMapping(value = "/list")
