@@ -11,9 +11,8 @@
     <div class="container">
         <div>
             <ol class="breadcrumb">
-                <li><a th:href="@{/book/list}">Go Back</a></li>
-                <li><strong><p>| </p></strong></li>
-                <li><a th:href="@{/book/update?id=} + ${book.id}">Edit</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/book/list}">Go Back</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/book/update?id=} + ${book.id}">Edit</a></li>
             </ol>
         </div>
 

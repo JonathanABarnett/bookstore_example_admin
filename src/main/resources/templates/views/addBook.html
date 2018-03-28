@@ -45,7 +45,7 @@
             <!-- Publisher -->
             <div class="form-group">
                 <div class="form-row">
-                    <label for="publisher" class="col-md-2">* Publisher</label>
+                    <label for="publisher" class="col-md-2">Publisher</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" id="publisher" placeholder="Enter Publisher"
                                th:value="${book.publisher}" name="publisher"/>
@@ -69,7 +69,7 @@
             <!-- Language -->
             <div class="form-group">
                 <div class="form-row">
-                    <label for="language" class="col-md-2">Language</label>
+                    <label for="language" class="col-md-2">* Language</label>
                     <div class="col-md-8">
                         <select id="language" class="form-control" th:value="${book.language}" name="language">
                             <option selected="selected" value="English">English</option>
@@ -85,7 +85,7 @@
             <!-- Category -->
             <div class="form-group">
                 <div class="form-row">
-                    <label for="category" class="col-md-2">Category</label>
+                    <label for="category" class="col-md-2">* Category</label>
                     <div class="col-md-8">
                         <select id="category" class="form-control" th:value="${book.category}" name="category">
                             <option value="Management" th:selected="(${book.category} == 'Management')">Management</option>
@@ -133,8 +133,7 @@
                     <label for="isbn" class="col-md-2">* ISBN</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" id="isbn" placeholder="Enter ISBN"
-                               th:value="${book.isbn}"
-                               required="required" name="isbn"/>
+                               th:value="${book.isbn}" required="required" name="isbn"/>
                         <small class="form-text text-muted">Enter ISBN</small>
                     </div>
                 </div>
@@ -143,7 +142,7 @@
             <!-- Shipping Weight -->
             <div class="form-group">
                 <div class="form-row">
-                    <label for="shippingWeight" class="col-md-2">Shipping Weight</label>
+                    <label for="shippingWeight" class="col-md-2">* Shipping Weight</label>
                     <div class="col-md-8">
                         <div class="input-group">
                             <input th:value="${book.shippingWeight}" type="number" step="any" class="form-control"
@@ -160,7 +159,7 @@
             <!-- List Price -->
             <div class="form-group">
                 <div class="form-row">
-                    <label for="listprice" class="col-md-2 control-label">List Price</label>
+                    <label for="listprice" class="col-md-2 control-label">* List Price</label>
                     <div class="col-md-8">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -177,7 +176,7 @@
             <!-- Our Price -->
             <div class="form-group">
                 <div class="form-row">
-                    <label for="ourprice" class="col-md-2">Our Price</label>
+                    <label for="ourprice" class="col-md-2">* Our Price</label>
                     <div class="col-md-8">
                         <div class="input-group">
                             <div class="input-group-prepend">
