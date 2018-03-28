@@ -227,7 +227,7 @@
                     <label for="description" class="col-md-2">Description</label>
                     <div class="col-md-8">
                         <textarea name="description" rows="5" class="form-control" id="description"
-                                  th:value="${book.description}" placeholder="Description"></textarea>
+                                  th:utext="${book.description}" th:value="${book.description}" placeholder="Description"></textarea>
                     </div>
                 </div>
             </div>

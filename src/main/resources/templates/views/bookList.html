@@ -44,5 +44,15 @@
 
 <div th:replace="fragments::scripts"></div>
 
+<script>
+    $(document).ready( function () {
+        $('#bookListTable').DataTable({
+            "lengthMenu": [[5, 10, 15, 20, -1],[5, 10, 15, 20, "All"]],
+            "ordering": true,
+            statesave: true
+        });
+    } );
+</script>
+
 </body>
 </html>
