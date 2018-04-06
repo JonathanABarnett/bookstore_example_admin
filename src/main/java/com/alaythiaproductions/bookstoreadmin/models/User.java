@@ -2,7 +2,6 @@ package com.alaythiaproductions.bookstoreadmin.models;
 
 import com.alaythiaproductions.bookstoreadmin.models.security.Authority;
 import com.alaythiaproductions.bookstoreadmin.models.security.UserRole;
-import com.alaythiaproductions.bookstoreadmin.models.security.Authority;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,6 +36,9 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserPayment> userPaymentList;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private ShoppingCart shoppingCart;
 
     public long getId() {
         return id;
@@ -148,5 +150,13 @@ public class User implements UserDetails {
 
     public void setUserPaymentList(List<UserPayment> userPaymentList) {
         this.userPaymentList = userPaymentList;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

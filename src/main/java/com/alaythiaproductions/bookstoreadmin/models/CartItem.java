@@ -14,7 +14,7 @@ public class CartItem {
     private BigDecimal subTotal;
 
     @OneToOne
-    private Book book;
+    private Book Book;
 
     @OneToMany(mappedBy = "cartItem")
     private List<BookToCartItem> bookToCartItemList;
@@ -51,12 +51,12 @@ public class CartItem {
         this.subTotal = subTotal;
     }
 
-    public Book getBook() {
-        return book;
+    public com.alaythiaproductions.bookstoreadmin.models.Book getBook() {
+        return Book;
     }
 
-    public void setBook(Book book) {
-        book = this.book;
+    public void setBook(com.alaythiaproductions.bookstoreadmin.models.Book book) {
+        Book = book;
     }
 
     public List<BookToCartItem> getBookToCartItemList() {
