@@ -106,4 +106,13 @@ public class BookController {
 
         return "views/bookList";
     }
+
+    @PostMapping(value = "/remove")
+    public String remove(@ModelAttribute("id") String id, Model model){
+        bookService.removeOne(Long.parseLong(id.substring(8)));
+        List<Book> bookList = bookService.findAll();
+        model.addAttribute("bookList", bookList);
+
+        return "redirect:/book/list";
+    }
 }

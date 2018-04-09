@@ -11,4 +11,6 @@ public interface BookService {
     List<Book> findAll();
     
     Book findOne(long id);
+
+    void removeOne(long id);
 }

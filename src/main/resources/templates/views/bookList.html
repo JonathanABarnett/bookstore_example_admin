@@ -12,6 +12,8 @@
             <thead>
             <tr>
                 <th hidden="hidden"></th>
+                <!-- <th><input th:id="selectAllBooks" type="checkbox"/></th> -->
+                <th scope="col">Delete</th>
                 <th scope="col">Cover</th>
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
@@ -24,7 +26,11 @@
             </thead>
             <tbody>
                 <tr th:each="book : ${books}">
-                    <td hidden="hidden"><input name="id" th:value="${book.id}" /></td>
+                    <td hidden="hidden"  name="id" th:value="${book.id}"></td>
+                    <td >
+                        <input hidden="hidden" name="id" th:value="${book.id}" />
+                        <input th:id="'selected' + ${book.id}" class="checkBox checkboxBook" type="checkbox" />
+                    </td>
                     <td><a th:href="@{bookInfo(id=${book.id})}"><img class="img-fluid" id="listImage" th:src="@{'/img/book/' + ${book.id} + '.png'}" /></a></td>
                     <td><a th:href="@{bookInfo(id=${book.id})}"><span th:text="${book.title}"></span></a></td>
                     <td th:text="${book.author}"></td>
@@ -32,12 +38,20 @@
                     <td th:text="'$' + ${#numbers.formatDecimal(book.listPrice, 0, 'COMMA', 2, 'POINT')}"></td>
                     <td th:text="'$' + ${#numbers.formatDecimal(book.ourPrice, 0, 'COMMA', 2, 'POINT')}"></td>
                     <td th:text="${book.active}? 'Yes' : 'No'"></td>
-                    <td><button class="btn btn-danger" type="submit">Delete</button></td>
+                    <td>
+                        <input hidden="hidden" name="id" th:value="${book.id}" />
+                        <button th:id="'oneBook-' + ${book.id}" class="btn btn-danger delete-book" type="submit">Delete
+                            <span><i class="fas fa-trash-alt"></i></span></button>
+                    </td>
                 </tr>
             </tbody>
         </table>
+        <button th:id="deleteSelected" class="btn btn-danger">Delete Selected</button>
     </div>
-    <footer th:replace="fragments::footer"></footer>
+
+
+
+        <footer th:replace="fragments::footer"></footer>
 
 </main>
 
@@ -53,6 +67,79 @@
         });
     } );
 </script>
+<!-- <script>
+    $(document).ready(function() {
+        $('.delete-book').on('click', function() {
+            /*<![CDATA[*/
+            var path = /*[[@{/}]]*/'remove';
+            /*]]>*/
+
+            var id=$(this).attr('id');
+
+            bootbox.confirm({
+                message: "Are you sure you would like to delete this book?",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fas fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fas fa-check"></i> Confirm'
+                    }
+                },
+                callback: function(confirmed) {
+                    if(confirmed) {
+                        $.post(path, {'id':id}, function(res){
+                            location.reload();
+                        });
+                    }
+                }
+            });
+        });
+
+
+        var bookIdList = [];
+
+        $('.checkboxBook').click(function() {
+            var id=$(this).attr('id');
+            if(this.checked) {
+                bookIdList.push(id);
+            } else {
+                bookIdList.splice(bookIdList.indexOf(id), 1);
+            }
+        });
+
+        $('#deleteSelected').click(function() {
+            /*<![CDATA[*/
+            var path = /*[[@{/}]]*/'removeList';
+            /*]]>*/
+
+            bootbox.confirm({
+                message: "Are you sure you would like to delete all selected books?",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fas fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fas fa-check"></i> Confirm'
+                    }
+                },
+                callback: function(confirmed) {
+                    if(confirmed) {
+                        $.ajax({
+                            type: 'POST',
+                            url: path,
+                            data: JSON.stringify(bookIdList),
+                            contentType: "application/json",
+                            success: function(res) {console.log(res); location.reload()},
+                            error: function(res) {console.log(res); location.reload();}
+                        });
+                    }
+                }
+            });
+
+        });
+    });
+</script> -->
 
 </body>
 </html>
