@@ -7,8 +7,14 @@
 <header th:replace="fragments::navbar"></header>
 
 <main role="main">
-    <footer th:replace="fragments::footer"></footer>
+
+    <div class="container text-center">
+        <img th:src="@{/img/admin-logo.png}" />
+    </div>
 </main>
+
+<!-- Footer -->
+<footer th:replace="fragments::footer"></footer>
 
 
 <span th:replace="fragments::scripts"></span>
